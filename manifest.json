@@ -1,10 +1,10 @@
 {
-	"id": "ai-assistant",
-	"name": "AI Assistant",
-	"version": "1.0.1",
-	"minAppVersion": "0.15.0",
-	"description": "AI assistant accessible with /ai command in notes. Supports OpenAI integration.",
-	"author": "Kowshik",
-	"authorUrl": "https://github.com/kowshik24",
-	"isDesktopOnly": false
+    "id": "ai-companion",
+    "name": "AI Companion",
+    "version": "1.0.2",
+    "minAppVersion": "0.15.0",
+    "description": "AI companion accessible with /ai command in notes. Supports OpenAI integration.",
+    "author": "Kowshik",
+    "authorUrl": "https://github.com/kowshik24",
+    "isDesktopOnly": false
 }
