@@ -1,16 +1,26 @@
-# Obsidian Sample Plugin
+# Obsidian AI Assistant Plugin
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+An AI assistant plugin for Obsidian that allows you to ask questions, get responses, and include page content as context.
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+## Features
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+- **Quick access with `/ai` command**: Simply type `/ai` in any note and press Enter to open the assistant.
+- **Drag-and-drop interface**: Move the assistant anywhere on your screen while you work.
+- **Context-aware responses**: Add Obsidian notes as context to get more relevant answers.
+- **Insert into notes**: Insert AI responses directly into your notes with a single click.
+- **OpenAI integration**: Powered by OpenAI's advanced language models.
+
+## Usage
+
+1. Type `/ai` in any note and press Enter to summon the AI assistant.
+2. Type your question in the text area.
+3. (Optional) Add context from other notes by clicking "Add Page to Context".
+4. Click "Ask" or press Ctrl/Cmd+Enter to get a response.
+5. Click "Insert to Note" to add the AI's response to your current note.
+
+## Requirements
+
+- An OpenAI API key (Configure in the plugin settings)
 
 ## First time developing plugins?
 

@@ -1,0 +1,58 @@
+/* Z-index override to ensure modal appears on top */
+.modal-container:has(.ai-assistant-modal) {
+    z-index: 999 !important;
+}
+
+/* Hide empty modals */
+.modal:empty,
+.modal:not(:has(*)),
+.modal-container:not(:has(.modal-content > *)) {
+    display: none !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+}
+
+/* Animation for modal appearance */
+.ai-assistant-modal.modal {
+    animation: ai-assistant-fade-in 0.2s ease-out;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+@keyframes ai-assistant-fade-in {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -45%) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Improved button styling */
+.ai-assistant-close-button {
+    transition: all 0.15s ease;
+    border-radius: 4px;
+}
+
+/* Add focus styles for accessibility */
+.ai-assistant-question-input:focus {
+    border-color: var(--interactive-accent);
+    box-shadow: 0 0 0 2px rgba(var(--interactive-accent-rgb), 0.2);
+    outline: none;
+}
+
+/* Responsive improvements for mobile */
+@media (max-width: 768px) {
+    .ai-assistant-draggable {
+        width: 95% !important;
+        max-height: 85vh;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+    }
+    
+    .ai-assistant-question-input {
+        min-height: 60px;
+    }
+}
