@@ -39,11 +39,11 @@ export class AIAssistantModal extends Modal {
             
             // Center the modal if it hasn't been positioned before
             if (!modalEl.hasAttribute('data-has-been-moved')) {
-                const windowWidth = window.innerWidth;
-                const windowHeight = window.innerHeight;
-                modalEl.style.left = `${windowWidth / 2}px`;
-                modalEl.style.top = `${windowHeight / 2}px`;
-                modalEl.style.transform = 'translate(-50%, -50%)';
+                // Use CSS variable for transform instead of a class
+                modalEl.style.setProperty('--modal-transform', 'translate(-50%, -50%)');
+            } else {
+                // Reset transform for manually positioned modals
+                modalEl.style.setProperty('--modal-transform', 'none');
             }
         }
 
@@ -460,8 +460,8 @@ export class AIAssistantModal extends Modal {
             modalEl.setAttribute('data-has-been-moved', 'true');
             modalEl.classList.add('ai-assistant-dragging');
             
-            // Remove transform to allow normal positioning
-            modalEl.style.transform = '';
+            // Remove transform effect to allow manual positioning
+            modalEl.style.setProperty('--modal-transform', 'none');
         };
         
         // Mouse move event handler
@@ -478,8 +478,9 @@ export class AIAssistantModal extends Modal {
             const boundedX = Math.min(Math.max(0, x), maxX);
             const boundedY = Math.min(Math.max(0, y), maxY);
             
-            modalEl.style.left = `${boundedX}px`;
-            modalEl.style.top = `${boundedY}px`;
+            // Use CSS variables instead of inline styles
+            modalEl.style.setProperty('--modal-pos-x', `${boundedX}px`);
+            modalEl.style.setProperty('--modal-pos-y', `${boundedY}px`);
         };
         
         // Mouse up event handler
