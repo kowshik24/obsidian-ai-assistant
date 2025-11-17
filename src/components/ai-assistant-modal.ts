@@ -93,7 +93,7 @@ export class AIAssistantModal extends Modal {
         
         const clearContextBtn = document.createElement('button');
         clearContextBtn.className = 'ai-assistant-button';
-        clearContextBtn.textContent = 'Clear Context';
+        clearContextBtn.textContent = 'Clear context';
         contextButtonsContainer.appendChild(clearContextBtn);
         
         clearContextBtn.addEventListener('click', () => {
@@ -141,8 +141,8 @@ export class AIAssistantModal extends Modal {
         askButton.textContent = 'Ask';
         buttonContainer.appendChild(askButton);
         
-        askButton.addEventListener('click', async () => {
-            await this.askQuestion();
+        askButton.addEventListener('click', () => {
+            void this.askQuestion();
         });
         
         // Response section
@@ -151,10 +151,10 @@ export class AIAssistantModal extends Modal {
         this.containerEl.appendChild(this.responseContainer);
         
         // Handle Ctrl+Enter or Cmd+Enter to submit
-        this.questionInput.addEventListener('keydown', async (e) => {
+        this.questionInput.addEventListener('keydown', (e) => {
             if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
                 e.preventDefault();
-                await this.askQuestion();
+                void this.askQuestion();
             }
         });
         

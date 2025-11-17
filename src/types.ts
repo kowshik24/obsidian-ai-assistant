@@ -6,7 +6,7 @@ import { AIAssistantSettings } from './settings';
 export interface AIAssistantPluginInterface extends Plugin {
     settings: AIAssistantSettings;
     openaiService: OpenAIService;
-    activeModal: unknown | null;
+    activeModal: unknown;
     loadSettings(): Promise<void>;
     saveSettings(): Promise<void>;
 }
