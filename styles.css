@@ -35,13 +35,18 @@
 .ai-assistant-draggable {
     position: fixed !important;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-    /* Default position if variables aren't set */
-    top: var(--modal-pos-y, 50%) !important;
-    left: var(--modal-pos-x, 50%) !important;
-    /* Only use transform for initial positioning */
-    transform: var(--modal-transform, translate(-50%, -50%));
     z-index: 1000 !important;
     transition: box-shadow 0.2s ease;
+}
+
+.ai-assistant-centered {
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+}
+
+.ai-assistant-positioned {
+    transform: none;
 }
 
 .ai-assistant-dragging {

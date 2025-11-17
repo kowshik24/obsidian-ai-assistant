@@ -39,11 +39,9 @@ export class AIAssistantModal extends Modal {
             
             // Center the modal if it hasn't been positioned before
             if (!modalEl.hasAttribute('data-has-been-moved')) {
-                // Use CSS variable for transform instead of a class
-                modalEl.style.setProperty('--modal-transform', 'translate(-50%, -50%)');
+                modalEl.classList.add('ai-assistant-centered');
             } else {
-                // Reset transform for manually positioned modals
-                modalEl.style.setProperty('--modal-transform', 'none');
+                modalEl.classList.add('ai-assistant-positioned');
             }
         }
 
@@ -52,11 +50,9 @@ export class AIAssistantModal extends Modal {
         this.headerEl.className = 'ai-assistant-header';
         contentEl.appendChild(this.headerEl);
         
-        const titleEl = document.createElement('h3');
-        titleEl.textContent = 'AI Assistant';
-        this.headerEl.appendChild(titleEl);
-        
-        // Add close button
+		const titleEl = document.createElement('h3');
+		titleEl.textContent = 'AI assistant';
+		this.headerEl.appendChild(titleEl);        // Add close button
         const closeButton = document.createElement('div');
         closeButton.className = 'ai-assistant-close-button';
         closeButton.textContent = '×';
@@ -80,12 +76,10 @@ export class AIAssistantModal extends Modal {
         contextButtonsContainer.className = 'ai-assistant-context-buttons';
         contextSection.appendChild(contextButtonsContainer);
         
-        const addContextBtn = document.createElement('button');
-        addContextBtn.className = 'ai-assistant-button';
-        addContextBtn.textContent = 'Add Page to Context';
-        contextButtonsContainer.appendChild(addContextBtn);
-        
-        addContextBtn.addEventListener('click', () => {
+		const addContextBtn = document.createElement('button');
+		addContextBtn.className = 'ai-assistant-button';
+		addContextBtn.textContent = 'Add page to context';
+		contextButtonsContainer.appendChild(addContextBtn);        addContextBtn.addEventListener('click', () => {
             // Create a new PageSuggestModal instance
             const pageSuggestModal = new PageSuggestModal(this.app, (file) => {
                 // This callback is executed when a file is selected
@@ -239,12 +233,10 @@ export class AIAssistantModal extends Modal {
             // Set copy icon
             setIcon(copyIconContainer, 'copy');
             
-            // Add text
-            const copyText = document.createElement('span');
-            copyText.textContent = 'Copy Response';
-            copyButton.appendChild(copyText);
-            
-            actionButtons.appendChild(copyButton);
+			// Add text
+			const copyText = document.createElement('span');
+			copyText.textContent = 'Copy response';
+			copyButton.appendChild(copyText);            actionButtons.appendChild(copyButton);
             
             copyButton.addEventListener('click', () => {
                 navigator.clipboard.writeText(response)
@@ -282,12 +274,10 @@ export class AIAssistantModal extends Modal {
             // Set insert icon
             setIcon(insertIconContainer, 'arrow-down-to-line');
             
-            // Add text
-            const insertText = document.createElement('span');
-            insertText.textContent = 'Insert to Note';
-            insertButton.appendChild(insertText);
-            
-            actionButtons.appendChild(insertButton);
+			// Add text
+			const insertText = document.createElement('span');
+			insertText.textContent = 'Insert to note';
+			insertButton.appendChild(insertText);            actionButtons.appendChild(insertButton);
             
             insertButton.addEventListener('click', () => {
                 this.insertResponseToNote(response);
@@ -459,9 +449,8 @@ export class AIAssistantModal extends Modal {
             // Mark this modal as having been manually positioned
             modalEl.setAttribute('data-has-been-moved', 'true');
             modalEl.classList.add('ai-assistant-dragging');
-            
-            // Remove transform effect to allow manual positioning
-            modalEl.style.setProperty('--modal-transform', 'none');
+            modalEl.classList.remove('ai-assistant-centered');
+            modalEl.classList.add('ai-assistant-positioned');
         };
         
         // Mouse move event handler
@@ -478,9 +467,9 @@ export class AIAssistantModal extends Modal {
             const boundedX = Math.min(Math.max(0, x), maxX);
             const boundedY = Math.min(Math.max(0, y), maxY);
             
-            // Use CSS variables instead of inline styles
-            modalEl.style.setProperty('--modal-pos-x', `${boundedX}px`);
-            modalEl.style.setProperty('--modal-pos-y', `${boundedY}px`);
+            // Set position using top and left
+            modalEl.style.top = `${boundedY}px`;
+            modalEl.style.left = `${boundedX}px`;
         };
         
         // Mouse up event handler
