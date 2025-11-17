@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-ai-assistant",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "AI assistant accessible with /ai command in Obsidian notes",
 	"main": "main.js",
 	"scripts": {
