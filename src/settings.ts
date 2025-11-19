@@ -32,7 +32,7 @@ export class AIAssistantSettingTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName('API key')
-			.setDesc('Your API key for OpenAI')
+			.setDesc('Enter your API key')
 			.addText(text => text
 				.setPlaceholder('Enter API key')
 				.setValue(this.plugin.settings.openaiApiKey)

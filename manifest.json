@@ -1,7 +1,7 @@
 {
     "id": "ai-companion",
     "name": "AI Companion",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "minAppVersion": "0.15.0",
     "description": "AI companion accessible with /ai command in notes. Supports OpenAI integration.",
     "author": "Kowshik",
