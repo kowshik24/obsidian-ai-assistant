@@ -32,7 +32,7 @@ export class AIAssistantSettingTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName('API key')
-			.setDesc('Your OpenAI API key')
+			.setDesc('Your API key for OpenAI')
 			.addText(text => text
 				.setPlaceholder('Enter API key')
 				.setValue(this.plugin.settings.openaiApiKey)
@@ -43,13 +43,13 @@ export class AIAssistantSettingTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName('Model')
-			.setDesc('The OpenAI model to use')
+			.setDesc('The model to use')
 			.addDropdown(dropdown => dropdown
-                .addOption('gpt-4o-mini', 'GPT-4o mini')
-                .addOption('gpt-4o', 'GPT-4o')
-                .addOption('gpt-4', 'GPT-4')
-                .addOption('gpt-4o-turbo', 'GPT-4o turbo')
-				.addOption('gpt-3.5-turbo', 'GPT-3.5 turbo')
+                .addOption('gpt-4o-mini', 'Gpt-4o mini')
+                .addOption('gpt-4o', 'Gpt-4o')
+                .addOption('gpt-4', 'Gpt-4')
+                .addOption('gpt-4o-turbo', 'Gpt-4o turbo')
+				.addOption('gpt-3.5-turbo', 'Gpt-3.5 turbo')
 				.setValue(this.plugin.settings.model)
 				.onChange(async (value) => {
 					this.plugin.settings.model = value;
