@@ -28,8 +28,6 @@ export class AIAssistantSettingTab extends PluginSettingTab {
 
 		containerEl.empty();
 
-		new Setting(containerEl).setName('AI assistant').setHeading();
-
 		new Setting(containerEl)
 			.setName('API key')
 			.setDesc('Enter your API key')

@@ -13,9 +13,6 @@ export default class AIAssistantPlugin extends Plugin {
 		// Load settings
 		await this.loadSettings();
 		
-		// Clean up any existing modal elements from previous sessions
-		this.cleanupExistingModals();
-		
 		// Initialize OpenAI service
 		this.openaiService = new OpenAIService(this.settings);
 		
@@ -45,30 +42,10 @@ export default class AIAssistantPlugin extends Plugin {
 		// Add settings tab
 		this.addSettingTab(new AIAssistantSettingTab(this.app, this));
 		
-		// Monitor keydown events to detect '/ai' + Enter
-		this.registerDomEvent(document, 'keydown', (event: KeyboardEvent) => {
-			if (event.key === 'Enter') {
-				const activeView = this.app.workspace.getActiveViewOfType(MarkdownView);
-				if (activeView && activeView.editor) {
-					// Check for "/ai" command with the event context
-					if (CommandDetector.checkForAICommand(activeView.editor, { event })) {
-						// Add a small delay to allow the editor to update
-						setTimeout(() => {
-							// Remove the "/ai" command
-							CommandDetector.removeAICommand(activeView.editor);
-							
-							// Open the AI Assistant
-							this.openAIAssistant(activeView.editor);
-						}, 10);
-					}
-				}
-			}
-		});
-		
-		// Also listen for editor changes to catch any other ways the command might be triggered
+		// Listen for editor changes to detect '/ai' command
 		this.registerEvent(
 			this.app.workspace.on('editor-change', (editor: Editor) => {
-				// Check for "/ai" command without event context (post-enter state)
+				// Check for "/ai" command (after user types /ai and presses Enter)
 				if (CommandDetector.checkForAICommand(editor)) {
 					// Remove the "/ai" command
 					void CommandDetector.removeAICommand(editor);
@@ -82,26 +59,9 @@ export default class AIAssistantPlugin extends Plugin {
 	
 	// Open the AI Assistant modal
 	private openAIAssistant(editor?: Editor) {
-		// If there's already an active modal, focus it instead of creating a new one
+		// If there's already an active modal, close it first
 		if (this.activeModal) {
-			// Try to focus the existing modal
-			try {
-				const modalEl = document.querySelector('.modal.ai-assistant-modal');
-				if (modalEl) {
-					// Focus the modal
-					(modalEl as HTMLElement).focus();
-					return;
-				}
-			} catch (e) {
-				console.warn("Error focusing modal:", e);
-			}
-			
-			// If we couldn't focus the modal, close it and create a new one
-			try {
-				this.activeModal.close();
-			} catch (e) {
-				console.warn("Error closing modal:", e);
-			}
+			this.activeModal.close();
 			this.activeModal = null;
 		}
 		
@@ -122,52 +82,12 @@ export default class AIAssistantPlugin extends Plugin {
 		this.activeModal.open();
 	}
 	
-	// Clean up any orphaned modal containers from previous sessions
-	private cleanupExistingModals() {
-		// Remove any AI assistant modal containers
-		document.querySelectorAll('.modal-container').forEach(container => {
-			const aiModal = container.querySelector('.ai-assistant-modal');
-			if (aiModal) {
-				container.remove();
-			}
-		});
-		
-		// Also check for any black background overlays that might be lingering
-		document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
-			// Only remove backdrops that don't have an associated modal
-			const modalContainer = document.querySelector('.modal-container');
-			if (!modalContainer) {
-				backdrop.remove();
-			}
-		});
-	}
-
 	onunload() {
 		// Close any open modals
 		if (this.activeModal) {
-			try {
-				this.activeModal.close();
-			} catch (e) {
-				console.warn("Error closing modal:", e);
-			}
+			this.activeModal.close();
 			this.activeModal = null;
 		}
-		
-		// Final cleanup of any remaining modal elements
-		this.register(() => {
-			// Remove any lingering modal containers
-			document.querySelectorAll('.modal-container').forEach(container => {
-				const aiModal = container.querySelector('.ai-assistant-modal');
-				if (aiModal) {
-					container.remove();
-				}
-			});
-			
-			// Remove any lingering backdrop elements
-			document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
-				backdrop.remove();
-			});
-		});
 	}
 
 	async loadSettings() {

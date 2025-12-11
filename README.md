@@ -1,12 +1,11 @@
-# Obsidian AI Assistant Plugin
+# AI Companion Plugin
 
 An AI assistant plugin for Obsidian that allows you to ask questions, get responses, and include page content as context.
 
 ## Features
 
 - **Quick access with `/ai` command**: Simply type `/ai` in any note and press Enter to open the assistant.
-- **Drag-and-drop interface**: Move the assistant anywhere on your screen while you work.
-- **Context-aware responses**: Add Obsidian notes as context to get more relevant answers.
+- **Context-aware responses**: Add notes as context to get more relevant answers.
 - **Insert into notes**: Insert AI responses directly into your notes with a single click.
 - **OpenAI integration**: Powered by OpenAI's advanced language models.
 
