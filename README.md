@@ -21,6 +21,11 @@ An AI assistant plugin for Obsidian that allows you to ask questions, get respon
 
 - An OpenAI API key (Configure in the plugin settings)
 
+
+## Demo Video
+
+[![Watch the video](https://img.youtube.com/vi/_sQmsy0-68w/0.jpg)](https://youtu.be/_sQmsy0-68w)
+
 ## First time developing plugins?
 
 Quick starting guide for new plugin devs:
